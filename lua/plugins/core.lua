@@ -5,8 +5,21 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "c", "cpp", "python", "lua", "bash" },
-	highlight = { enable = true },
+        ensure_installed = {
+          "c",
+          "cpp",
+          "python",
+          "lua",
+          "bash",
+          "javascript",
+          "typescript",
+          "tsx",
+          "html",
+          "css",
+          "json",
+          "markdown"
+        },
+        highlight = { enable = true },
         indent = { enable = true },
       })
     end
@@ -16,7 +29,13 @@ return {
   { 
     "neovim/nvim-lspconfig",
     config = function()
-      require("lspconfig").clangd.setup({}) -- C++ LSP
+      local lspconfig = require("lspconfig")
+      lspconfig.clangd.setup({}) -- C++
+      lspconfig.ts_ls.setup({})
+      lspconfig.html.setup({})
+      lspconfig.cssls.setup({})
+      lspconfig.jsonls.setup({})
+      lspconfig.emmet_ls.setup({})
     end
   },
 
@@ -46,6 +65,8 @@ return {
   },
 
   -- Snippet Engine (Required for Completion)
-  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" }
-}
+  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
 
+  -- Terminal
+  { 'akinsho/toggleterm.nvim', version = "*", config = true }
+}
