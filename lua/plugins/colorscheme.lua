@@ -1,10 +1,14 @@
 return {
   {
     "ellisonleao/gruvbox.nvim",
-    priority = 1000, -- Load first
-    config = function()
-      vim.cmd("colorscheme gruvbox")
-    end,
+    priority = 1000,
+    config = true,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
 }
 
